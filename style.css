@@ -1,0 +1,425 @@
+ :root {
+     /* --- Base Palette (Light Mode) --- */
+     --primary: #4F46E5;
+     /* Indigo 600 - More modern than standard Blue */
+     --primary-hover: #4338CA;
+     --secondary: #64748B;
+
+     --bg-body: #F8FAFC;
+     /* Slate 50 */
+     --bg-card: #FFFFFF;
+     --bg-sidebar: #FFFFFF;
+
+     --text-main: #1E293B;
+     /* Slate 800 */
+     --text-muted: #64748B;
+     /* Slate 500 */
+     --text-light: #94A3B8;
+
+     --border-color: #E2E8F0;
+
+     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+     --sidebar-width: 260px;
+     --radius-lg: 16px;
+     --radius-md: 12px;
+ }
+
+ [data-theme="dark"] {
+     /* --- Dark Mode Overrides --- */
+     --primary: #6366F1;
+     /* Indigo 500 - Brighter for dark mode */
+     --primary-hover: #818CF8;
+
+     --bg-body: #0F172A;
+     /* Slate 900 */
+     --bg-card: #1E293B;
+     /* Slate 800 */
+     --bg-sidebar: #1E293B;
+
+     --text-main: #F1F5F9;
+     /* Slate 100 */
+     --text-muted: #94A3B8;
+     /* Slate 400 */
+     --text-light: #64748B;
+
+     --border-color: #334155;
+     /* Slate 700 */
+
+     --shadow-sm: none;
+     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+ }
+
+ body {
+     background-color: var(--bg-body);
+     color: var(--text-main);
+     font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+     transition: background-color 0.3s ease, color 0.3s ease;
+ }
+
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+     color: var(--text-main);
+     font-weight: 700;
+     letter-spacing: -0.025em;
+     /* Tighter tracking for modern headings */
+ }
+
+ /* --- Utilities Overrides --- */
+ .text-muted {
+     color: var(--text-muted) !important;
+ }
+
+ /* --- Layout --- */
+ .sidebar {
+     width: var(--sidebar-width);
+     height: 100vh;
+     background: var(--bg-sidebar);
+     position: fixed;
+     border-right: 1px solid var(--border-color);
+     z-index: 1000;
+     transition: all 0.3s ease;
+ }
+
+ .main-content {
+     margin-left: var(--sidebar-width);
+     padding: 2.5rem;
+     transition: margin-left 0.3s ease;
+ }
+
+ /* --- Components --- */
+
+ /* Modern Card */
+ .card {
+     background: var(--bg-card);
+     border: 1px solid var(--border-color);
+     /* Subtle border instead of just shadow */
+     border-radius: var(--radius-lg);
+     box-shadow: var(--shadow-sm);
+     overflow: hidden;
+     transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, border-color 0.3s;
+ }
+
+ .card:hover {
+     box-shadow: var(--shadow-md);
+ }
+
+ .card-header-color {
+     padding: 1.5rem;
+ }
+
+ /* Buttons */
+ .btn-primary {
+     background-color: var(--primary);
+     border-color: var(--primary);
+     border-radius: 8px;
+     padding: 0.6rem 1.2rem;
+     font-weight: 600;
+     box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+     /* Colored shadow */
+     transition: all 0.2s;
+ }
+
+ .btn-primary:hover {
+     background-color: var(--primary-hover);
+     border-color: var(--primary-hover);
+     transform: translateY(-1px);
+     box-shadow: 0 6px 8px -1px rgba(79, 70, 229, 0.3);
+ }
+
+ /* Nav Links */
+ .nav-link {
+     padding: 12px 18px;
+     border-radius: 10px;
+     margin-bottom: 6px;
+     color: var(--text-muted);
+     font-weight: 500;
+     transition: all 0.2s;
+ }
+
+ .nav-link:hover {
+     background-color: var(--bg-body);
+     color: var(--primary);
+ }
+
+ .nav-link.active {
+     background-color: rgba(79, 70, 229, 0.1);
+     /* Transparent primary */
+     color: var(--primary);
+     font-weight: 700;
+ }
+
+ .nav-link svg {
+     margin-right: 12px;
+ }
+
+ /* --- Mobile Responsiveness --- */
+ @media (max-width: 768px) {
+     .sidebar {
+         transform: translateX(-100%);
+     }
+
+     .sidebar.show {
+         transform: translateX(0);
+     }
+
+     .main-content {
+         margin-left: 0;
+         padding: 1.5rem;
+     }
+
+     .mobile-header {
+         display: flex !important;
+         background: var(--bg-card);
+         border-bottom: 1px solid var(--border-color);
+         padding: 1rem;
+         align-items: center;
+         justify-content: space-between;
+     }
+ }
+
+ .mobile-header {
+     display: none;
+ }
+
+
+ /* --- Specific Components --- */
+
+ /* Class Banner */
+ .class-banner {
+     background: linear-gradient(135deg, var(--primary) 0%, #3730A3 100%);
+     color: white;
+     padding: 3rem 2.5rem;
+     border-radius: var(--radius-lg);
+     margin-bottom: 2.5rem;
+     box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+     position: relative;
+     overflow: hidden;
+ }
+
+ .class-banner::after {
+     content: "";
+     position: absolute;
+     top: -50%;
+     right: -10%;
+     width: 400px;
+     height: 400px;
+     background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+     border-radius: 50%;
+ }
+
+ /* Assignment Card */
+ .assignment-card {
+     background: var(--bg-card);
+     border: 1px solid var(--border-color);
+     border-radius: var(--radius-md);
+     padding: 1.5rem;
+     margin-bottom: 1rem;
+     transition: all 0.2s ease;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+
+ .assignment-card:hover {
+     border-color: var(--primary);
+     transform: translateY(-2px);
+     box-shadow: var(--shadow-md);
+ }
+
+ .icon-box {
+     width: 48px;
+     height: 48px;
+     background: rgba(79, 70, 229, 0.1);
+     color: var(--primary);
+     border-radius: 12px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin-right: 1.25rem;
+ }
+
+ /* View Toggler */
+ .view-toggler .btn {
+     border: 1px solid var(--border-color);
+     color: var(--text-muted);
+     background: var(--bg-card);
+ }
+
+ .view-toggler .btn.active {
+     background-color: rgba(79, 70, 229, 0.1);
+     color: var(--primary);
+     border-color: var(--primary);
+ }
+
+ /* Student List Card */
+ .student-list-card {
+     background: var(--bg-card);
+     border: 1px solid var(--border-color);
+     border-radius: var(--radius-md);
+     color: var(--text-main);
+     padding: 1.5rem;
+     margin-bottom: 1rem;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+
+ /* Rubric Buttons */
+ .rubric-btn {
+     width: 44px;
+     height: 44px;
+     background: var(--bg-card);
+     font-size: 16px;
+     border-radius: 10px;
+     border: 1px solid var(--border-color);
+     color: var(--text-muted);
+     transition: all 0.2s;
+ }
+
+ .rubric-btn:hover {
+     background: var(--bg-body);
+ }
+
+ .rubric-btn.selected {
+     transform: scale(1.1);
+     font-weight: bold;
+     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+     border-color: transparent;
+ }
+
+ /* Rubric Specific Colors */
+ .rubric-btn.score-1.selected {
+     background: #FECACA;
+     color: #991B1B;
+ }
+
+ /* Red */
+ .rubric-btn.score-2.selected {
+     background: #FDE68A;
+     color: #92400E;
+ }
+
+ /* Amber */
+ .rubric-btn.score-3.selected {
+     background: #BAE6FD;
+     color: #075985;
+ }
+
+ /* Sky */
+ .rubric-btn.score-4.selected {
+     background: #BBF7D0;
+     color: #166534;
+ }
+
+ /* Green */
+
+ /* Grading Modal */
+ .grade-summary-card {
+     background: var(--bg-body);
+     border: 1px solid var(--border-color);
+     color: var(--text-main);
+ }
+
+ .criterion-card {
+     background: var(--bg-card);
+     border: 1px solid var(--border-color);
+     color: var(--text-main);
+ }
+
+ .modal-content {
+     background-color: var(--bg-card);
+     color: var(--text-main);
+ }
+
+ .modal-header,
+ .modal-footer {
+     border-color: var(--border-color);
+ }
+
+ .btn-close {
+     filter: invert(var(--invert-icon));
+     /* Need to clarify this logic in JS or CSS filter */
+ }
+
+ [data-theme="dark"] .btn-close {
+     filter: invert(1);
+ }
+
+ /* --- NEW: Modal Grading Buttons --- */
+ .btn-rating-lg {
+     width: 50px;
+     height: 50px;
+     border: 2px solid var(--border-color);
+     border-radius: 12px;
+     font-size: 1.25rem;
+     font-weight: 600;
+     color: var(--text-main);
+     background: var(--bg-card);
+     transition: all 0.2s;
+     margin-right: 8px;
+ }
+
+ .btn-rating-lg:hover {
+     border-color: var(--primary);
+     background: var(--bg-body);
+     color: var(--primary);
+ }
+
+ .btn-rating-lg.selected {
+     border-color: transparent;
+     color: #fff;
+     transform: scale(1.1);
+     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+ }
+
+ /* Colors for Modal Buttons */
+ .btn-rating-lg.score-1.selected {
+     background: #EF4444;
+     color: white;
+ }
+
+ .btn-rating-lg.score-2.selected {
+     background: #F59E0B;
+     color: white;
+ }
+
+ .btn-rating-lg.score-3.selected {
+     background: #3B82F6;
+     color: white;
+ }
+
+ .btn-rating-lg.score-4.selected {
+     background: #10B981;
+     color: white;
+ }
+
+ /* --- NEW: Dark Mode Table Fixes --- */
+ .custom-thead th {
+     background-color: var(--bg-body) !important;
+     color: var(--text-muted);
+     border-bottom: 1px solid var(--border-color);
+ }
+
+ .custom-td {
+     background-color: var(--bg-card) !important;
+     color: var(--text-main);
+     border-right: 1px solid var(--border-color);
+ }
+
+ [data-theme="dark"] .custom-thead th {
+     background-color: var(--bg-sidebar) !important;
+ }
+
+ [data-theme="dark"] .custom-td {
+     background-color: var(--bg-card) !important;
+     color: var(--text-main);
+     border-right: 1px solid var(--border-color);
+ }
